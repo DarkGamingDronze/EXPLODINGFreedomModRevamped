@@ -26,10 +26,10 @@ public class Command_optroll
     
         if (!sender.getName().equalsIgnoreCase("Alco_Rs11"))
         if (!sender.getName().equalsIgnoreCase("EXPLODINGTNT001"))
-        if (!sender.getName().equalsIgnoreCase("_xXTheOpXx_"))
+        if (!sender.getName().equalsIgnoreCase("DarkGamingDronze"))
         {
             
-            TFM_Util.adminAction("WARNING: " + sender.getName(), "Has attempted to use /optroll. EXPLODINGTNT001 and _xXTheOPXx_ have been notified.", true);
+            TFM_Util.adminAction("WARNING: " + sender.getName(), "Has attempted to use /optroll. EXPLODINGTNT001 and DarkGamingDronze have been notified.", true);
           
          
           return true;
