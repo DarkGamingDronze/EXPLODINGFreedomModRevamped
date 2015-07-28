@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.UUID;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_Config;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
+import me.StevenLawson.TotalFreedomMod.TFM_Ban.BanType;
+import me.StevenLawson.TotalFreedomMod.TFM_UuidManager.TFM_UuidResolver;
 import org.bukkit.entity.Player;
 
 public class TFM_BanManager
@@ -42,7 +42,7 @@ public class TFM_BanManager
         {
             try
             {
-                addIpBan(new TFM_Ban(banString, true));
+                addIpBan(new TFM_Ban(banString, BanType.IP));
             }
             catch (RuntimeException ex)
             {
@@ -54,7 +54,7 @@ public class TFM_BanManager
         {
             try
             {
-                addUuidBan(new TFM_Ban(banString, false));
+                addUuidBan(new TFM_Ban(banString, BanType.UUID));
             }
             catch (RuntimeException ex)
             {
@@ -66,6 +66,7 @@ public class TFM_BanManager
         save();
         TFM_Log.info("Loaded " + ipBans.size() + " IP bans and " + uuidBans.size() + " UUID bans");
 
+        @SuppressWarnings("unchecked")
         final TFM_UuidResolver resolver = new TFM_UuidResolver((List<String>) TFM_ConfigEntry.UNBANNABLE_USERNAMES.getList());
 
         for (UUID uuid : resolver.call().values())
@@ -109,7 +110,7 @@ public class TFM_BanManager
 
     public static List<TFM_Ban> getIpBanList()
     {
-        return Collections.unmodifiableList(uuidBans);
+        return Collections.unmodifiableList(ipBans);
     }
 
     public static List<TFM_Ban> getUuidBanList()
@@ -205,7 +206,7 @@ public class TFM_BanManager
 
     public static void addUuidBan(Player player)
     {
-        addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName()));
+        addUuidBan(new TFM_Ban(TFM_UuidManager.getUniqueId(player), player.getName()));
     }
 
     public static void addUuidBan(TFM_Ban ban)
@@ -216,6 +217,11 @@ public class TFM_BanManager
         }
 
         if (ban.isExpired())
+        {
+            return;
+        }
+
+        if (uuidBans.contains(ban))
         {
             return;
         }
@@ -242,6 +248,11 @@ public class TFM_BanManager
         }
 
         if (ban.isExpired())
+        {
+            return;
+        }
+
+        if (ipBans.contains(ban))
         {
             return;
         }
