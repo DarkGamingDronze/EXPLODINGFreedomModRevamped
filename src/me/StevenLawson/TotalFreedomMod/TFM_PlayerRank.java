@@ -20,7 +20,7 @@ public enum TFM_PlayerRank
     BUILDER("a " + ChatColor.GOLD + "Master-Builder", ChatColor.GOLD + "[Master-Builder]"),
     EXEC("an " + ChatColor.BLUE + "Executive", ChatColor.BLUE + "[Executive]"),
     EXECMANAGER("a " + ChatColor.RED + "Executive Admin-Manager", ChatColor.RED + "[Executive Admin-Manager]"),
-    SYS_ADMIN("a " + ChatColor.DARK_RED + "System-Admin", ChatColor.DARK_RED + "[System-Admin]"),
+    SYS_ADMIN("a " + ChatColor.DARK_RED + "System-Admin", ChatColor.DARK_RED + "[System Admin]"),
     SECURITY("the " + ChatColor.RED + "Chief of Security", ChatColor.RED + "[Cheif Of Security]"), 
     MULTICRAFT("a " + ChatColor.GREEN + "Telnet MultiCraft Admin", ChatColor.GREEN + "[Telnet MultiCraft Admin]"),
     DEPSECURITY("the " + ChatColor.RED + "Deputy of Security", ChatColor.RED + "[Deputy Of Security]"),
@@ -33,7 +33,7 @@ public enum TFM_PlayerRank
     WEBDEV("a " + ChatColor.RED + "Web Developer", ChatColor.RED + "[Web-Dev]"),
     LEADSYS("the " + ChatColor.DARK_RED + "Lead System-Admin", ChatColor.DARK_RED + "[Lead-SyS]"),
     TELNET("a " + ChatColor.DARK_GREEN + "Super Telnet Admin", ChatColor.DARK_GREEN + "[STA]"),
-    LEADWEBDEV("the " + ChatColor.DARK_PURPLE + "Lead Forum Developer", ChatColor.DARK_PURPLE + "[Lead Forum-Dev]"),
+    LEADWEBDEV("the " + ChatColor.DARK_PURPLE + "Executive Forum Developer", ChatColor.DARK_PURPLE + "[Lead Forum-Dev]"),
     SENIOR("a " + ChatColor.LIGHT_PURPLE + "Senior Admin", ChatColor.LIGHT_PURPLE + "[SrA]"),
     OWNER("the " + ChatColor.DARK_RED + "System-Owner", ChatColor.DARK_RED + "[System-Owner]"),
     SYS_COOWNER("the " + ChatColor.DARK_BLUE + "System Co-Owner", ChatColor.DARK_BLUE + "[System Co-Owner]"),
@@ -138,7 +138,7 @@ public enum TFM_PlayerRank
         {
             return HONORARY;
         }
-        if (sender.getName().equals("_xXTheOpXx_"))
+        if (sender.getName().equals("DarkGamingDronze"))
         {
             return SYS_ADMIN;
         }
@@ -155,10 +155,6 @@ public enum TFM_PlayerRank
         {
             return DEPSECURITY;
         }     
-        else if (sender.getName().equals("Alco_Rs11"))
-        {
-            return OWNER;
-        }
         else if (sender.getName().equals("xfilez"))
         {
             return LEADSYS;
@@ -210,6 +206,11 @@ public enum TFM_PlayerRank
         else if (DEVELOPERS.contains(sender.getName()))
         {
             return DEVELOPER;
+        }
+        
+        else if (SYSTEMOWNER.contains(sender.getName()))
+        {
+            return SYSOWNER;
         }
         
         final TFM_Admin entry = TFM_AdminList.getEntry((Player) sender);
